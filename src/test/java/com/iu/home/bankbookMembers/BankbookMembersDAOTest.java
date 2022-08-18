@@ -1,5 +1,10 @@
-package com.iu.home.bankbookMembers;
 
+
+private BankMembersDAO bankMembersDAO;
+	
+	@Test
+	public void setJoin() {
+		int result()
 import static org.junit.Assert.*;
 
 import java.util.List;
