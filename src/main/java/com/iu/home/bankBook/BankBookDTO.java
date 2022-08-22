@@ -1,10 +1,15 @@
 package com.iu.home.bankBook;
 
+import java.util.List;
+
+import com.iu.home.bankAccount.BankAccountDTO;
+
 public class BankBookDTO {
 	private Long bookNum;
 	private String bookName;
 	private Double bookRate;
 	private Integer bookSale;
+	private List<BankAccountDTO> bankAccountDTOs;
 	
 	
 	public Long getBookNum() {

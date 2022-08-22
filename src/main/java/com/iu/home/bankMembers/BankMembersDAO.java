@@ -16,7 +16,11 @@ public class BankMembersDAO implements MembersDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.iu.start.bankMembers.BankMembersDAO."; 
+	private final String NAMESPACE = "com.iu.start.bankMembers.BankMembersDAO.";
+	
+	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getMyPage", bankMembersDTO);
+	}
 	
 	public BankMembersDTO getLogin(BankMembersDTO bankMembersDTO)throws Exception{
 		

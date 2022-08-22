@@ -23,6 +23,16 @@ public class MemberController {
 	@Autowired
 	private BankMembersService bankMembersService;
 	
+	@RequestMapping(value = "myPage.iu", method = RequestMethod.GET)
+	public ModelAndView myPage(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
+		mv.addObject("dto", bankMembersDTO);
+		mv.setViewName("member/myPage");
+		return mv;
+	}
+	
 	// annotation
 	// @ : 설명+실행
 	@RequestMapping(value="logout", method = RequestMethod.GET)
