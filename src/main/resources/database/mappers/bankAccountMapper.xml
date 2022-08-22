@@ -4,6 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.iu.home.bankAccount.BankAccountDAO">
+	<insert id="setAddAccount" parameterType="BankAccountDTO">
+		INSERT INTO BANKACCOUNT VALUES (ACCOUNT_SEQ.NEXTVAL, #{userName}, #{bookNum}, SYSDATE)
+	</insert>
 	<select id="getListByUserName" parameterType="BankMembersDTO" resultMap="getListByUserNameResult" >
 		SELECT BA.ACCOUNTNUM , BB.BOOKNAME, BA.ACCOUNTDATE
 		FROM BANKACCOUNT BA

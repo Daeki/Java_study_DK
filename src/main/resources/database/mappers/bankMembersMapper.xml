@@ -8,9 +8,36 @@
 <!-- application 내에서 중복 X -->
 <mapper namespace="com.iu.start.bankMembers.BankMembersDAO">
 
-	<select id="getMyPage" parameterType="BankMembersDTO" resultType="BankMembersDTO">
-		SELECT USERNAME, NAME, EMAIL, PHONE FROM BANKMEMBERS WHERE USERNAME=#{userName}
+	<select id="getMyPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
+		SELECT 	USERNAME, NAME, EMAIL, PHONE, ACCOUNTNUM, BOOKNAME, ACCOUNTDATE
+		FROM 	BANKMEMBERS BM
+		     	
+		     	INNER JOIN 
+		     	BANKACCOUNT BA
+		     	USING (USERNAME)
+		     	
+		     	INNER JOIN
+		     	BANKBOOK BB
+		     	USING (BOOKNUM)
+		WHERE 	USERNAME=#{userName} 
+		
+		
 	</select>
+	
+	<resultMap type="BankMembersDTO" id="getMyPageResult">
+		<id column="USERNAME" property="userName" />
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO">
+			<id column="ACCOUNTNUM" property="accountNum"/>
+			<result column="ACCOUNTDATE" property="accountDate"/>
+			<association property="bankBookDTO" javaType="BankBookDTO">
+				<result column="BOOKNAME" property="bookName"/>
+			</association>
+		</collection>
+	
+	</resultMap>
 
 <!-- id는 DAO의 메서드명과 동일하게 -->
 	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">

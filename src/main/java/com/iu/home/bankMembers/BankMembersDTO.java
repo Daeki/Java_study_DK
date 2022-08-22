@@ -1,14 +1,25 @@
 package com.iu.home.bankMembers;
 
+import java.util.List;
+
+import com.iu.home.bankAccount.BankAccountDTO;
+
 public class BankMembersDTO {
 	private String userName;
 	private String password;
 	private String name;
 	private String email;
 	private String phone;
+	private List<BankAccountDTO> bankAccountDTOs;
 	
 	
 	
+	public List<BankAccountDTO> getBankAccountDTOs() {
+		return bankAccountDTOs;
+	}
+	public void setBankAccountDTOs(List<BankAccountDTO> bankAccountDTOs) {
+		this.bankAccountDTOs = bankAccountDTOs;
+	}
 	public String getUserName() {
 		return userName;
 	}

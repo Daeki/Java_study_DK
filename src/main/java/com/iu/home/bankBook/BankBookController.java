@@ -2,6 +2,7 @@ package com.iu.home.bankBook;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,7 +76,7 @@ public class BankBookController {
 		//ModelAndView mv = new ModelAndView();
 		System.out.println("list 실행");
 		//DB 없으신 분들
-		ArrayList<BankBookDTO> ar = bankBookService.getList();
+		List<BankBookDTO> ar = bankBookService.getList();
 
 		model.addAttribute("list", ar);
 		return "bankbook/list";

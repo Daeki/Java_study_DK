@@ -22,7 +22,7 @@ public class BankAccountDAO {
 		return sqlSession.selectList(NAMESPACE+"getListByUserName", bankMembersDTO);
 	}
 	
-	public int add(BankAccountDTO bankAccountDTO)throws Exception{
+	public int setAddAccount(BankAccountDTO bankAccountDTO)throws Exception{
 		
 		return 0;
 		

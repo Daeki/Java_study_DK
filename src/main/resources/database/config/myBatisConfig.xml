@@ -9,6 +9,7 @@
 		<typeAlias type="com.iu.home.bankAccount.BankAccountDTO" alias="BankAccountDTO"/>
 		<typeAlias type="com.iu.home.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="java.lang.String" alias="String"/>
+		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 
 </configuration>
