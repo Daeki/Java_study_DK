@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.iu.home.bankbook.BankBookDAO">
+<mapper namespace="com.iu.home.bankBook.BankBookDAO">
 	<insert id="setBankBook" parameterType="BankBookDTO">
 		INSERT INTO BANKBOOK VALUES (#{bookNum}, #{bookName}, #{bookRate}, 1)
 	</insert>

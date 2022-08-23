@@ -8,6 +8,9 @@
 		<typeAlias type="com.iu.home.bankMembers.BankMembersDTO" alias="BankMembersDTO"/>
 		<typeAlias type="com.iu.home.bankAccount.BankAccountDTO" alias="BankAccountDTO"/>
 		<typeAlias type="com.iu.home.bankBook.BankBookDTO" alias="BankBookDTO"/>
+		<typeAlias type="com.iu.home.board.impl.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.iu.home.board.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.iu.home.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>

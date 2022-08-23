@@ -16,7 +16,7 @@ public class BankBookDAO implements BookDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="com.iu.home.bankbook.BankBookDAO.";
+	private final String NAMESPACE="com.iu.home.bankBook.BankBookDAO.";
 	
 	@Override
 	public int setBankBook(BankBookDTO bankBookDTO) throws Exception{
