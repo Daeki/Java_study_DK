@@ -26,7 +26,7 @@ public class NoticeDAOTest extends MyAbstractTest {
 	public void setAddTest()throws Exception{
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setTitle("Test");
-		noticeDTO.setWriter("WRiter");
+		noticeDTO.setWriter("Writer");
 		noticeDTO.setContents("Contents");
 		
 		int result = noticeDAO.setAdd(noticeDTO);
