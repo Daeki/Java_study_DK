@@ -16,21 +16,35 @@ public class NoticeDAOTest extends MyAbstractTest {
 	private NoticeDAO noticeDAO;
 	
 	@Test
-	public void getListTest()throws Exception{
-		 List<BoardDTO> ar = noticeDAO.getList();
-		 assertEquals(0, ar.size());
-		
+	public void getCountTest()throws Exception{
+		long count = noticeDAO.getCount();
+		assertEquals(102L, count);
 	}
 	
 	@Test
-	public void setAddTest()throws Exception{
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setTitle("Test");
-		noticeDTO.setWriter("Writer");
-		noticeDTO.setContents("Contents");
+	public void getListTest()throws Exception{
+//		 List<BoardDTO> ar = noticeDAO.getList(1L);
+//		 assertEquals(0, ar.size());
 		
-		int result = noticeDAO.setAdd(noticeDTO);
-		assertEquals(1, result);
+	}
+	
+//	@Test
+	public void setAddTest()throws Exception{
+		
+		for(int i=0;i<100;i++) {
+			NoticeDTO noticeDTO = new NoticeDTO();
+			noticeDTO.setTitle("Title"+i);
+			noticeDTO.setWriter("Writer"+i);
+			noticeDTO.setContents("Contents"+i);
+			
+			int result = noticeDAO.setAdd(noticeDTO);
+			
+			if(i%10==0) {
+				Thread.sleep(500);
+			}
+		}
+		
+		System.out.println("Finish!!!!!");
 		
 	}
 

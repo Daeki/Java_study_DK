@@ -1,7 +1,6 @@
-package com.iu.home.board.notice;
+package com.iu.home.board.qna;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,22 +9,16 @@ import org.springframework.stereotype.Repository;
 import com.iu.home.board.impl.BoardDAO;
 import com.iu.home.board.impl.BoardDTO;
 @Repository
-public class NoticeDAO implements BoardDAO {
+public class QnaDAO implements BoardDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="com.iu.home.board.notice.NoticeDAO.";
+	private final String NAMESPACE="com.iu.home.board.qna.QnaDAO.";
 
 	@Override
-	public Long getCount() throws Exception {
+	public List<BoardDTO> getList() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"getCount");
-	}
-	
-	@Override
-	public List<BoardDTO> getList(Map<String, Long> map) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getList", map);
+		return sqlSession.selectList(NAMESPACE+"getList");
 	}
 
 	@Override
