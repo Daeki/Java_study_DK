@@ -8,7 +8,7 @@
 		SELECT COUNT(num) FROM NOTICE
 	</select>
 
-	<select id="getList" resultType="NoticeDTO" parameterType="java.util.Map">
+	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
 		SELECT * FROM
 		    (
 		        SELECT ROWNUM R, N.* FROM

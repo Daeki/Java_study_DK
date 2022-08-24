@@ -31,7 +31,7 @@ public class Pager {
 	
 	//2. Jsp에서 사용할 값 계산
 	public void getNum(Long totalCount)throws Exception{
-		//2. totalCount로 totalPage구하기
+		//2. totalCount로 totalPage구하기 ex)100
 		Long totalPage=totalCount/this.getPerPage();
 		if(totalCount%this.getPerPage() != 0) {
 			totalPage++;
@@ -45,7 +45,7 @@ public class Pager {
 		
 		//4. page로 curBlock 찾기
 		Long curBlock = this.getPage()/this.getPerBlock();
-		if(this.getPerPage()%this.getPerBlock() != 0) {
+		if(this.getPage()%this.getPerBlock() != 0) {
 			curBlock++;
 		}
 		
