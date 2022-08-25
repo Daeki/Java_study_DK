@@ -4,15 +4,34 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.iu.home.board.notice.NoticeDAO">
-	<select id="getCount" resultType="Long">
+	<sql id="search">
+		WHERE
+		   <choose>
+		         <when test="kind == 'title'">TITLE</when>
+		         <when test="kind == 'writer'">WRITER</when>
+		         <otherwise>contents</otherwise>
+		   </choose> 
+		LIKE '%'||#{search}||'%'	
+	
+	</sql>
+
+	<select id="getCount" resultType="Long" parameterType="Pager">
 		SELECT COUNT(num) FROM NOTICE
+		<include refid="search"></include>
+		
 	</select>
 
 	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
 		SELECT * FROM
 		    (
 		        SELECT ROWNUM R, N.* FROM
-		            (SELECT * FROM NOTICE ORDER BY NUM DESC) N
+		            (SELECT * FROM NOTICE 
+		            
+						<include refid="search"></include>
+		            
+		            
+		            
+		             ORDER BY NUM DESC) N
 		    )
 		WHERE R BETWEEN #{startRow} and #{lastRow}
 	</select>

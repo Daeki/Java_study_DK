@@ -4,10 +4,37 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.iu.home.board.qna.QnaDAO">
-	<select id="getList" resultType="QnaDTO">
-		SELECT NUM, TITLE, WRITER, REGDATE, HIT
-		FROM QNA 
-		ORDER BY NUM DESC
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		SELECT COUNT(num) FROM QNA
+	            	WHERE
+		            	<choose>
+		            		<when test="kind == 'title'">TITLE</when>
+		            		<when test="kind == 'writer'">WRITER</when>
+		            		<otherwise>contents</otherwise>
+		            	</choose> 
+		            LIKE '%'||#{search}||'%'		
+		
+	</select>
+
+	<select id="getList" resultType="QnaDTO" parameterType="Pager">
+		SELECT * FROM
+		    (
+		        SELECT ROWNUM R, N.* FROM
+		            (SELECT * FROM QNA 
+		            
+		            	WHERE
+		            		<choose>
+		            			<when test="kind == 'title'">TITLE</when>
+		            			<when test="kind == 'writer'">WRITER</when>
+		            			<otherwise>contents</otherwise>
+		            		</choose> 
+		            		LIKE '%'||#{search}||'%'
+		            
+		            
+		            
+		             ORDER BY NUM DESC) N
+		    )
+		WHERE R BETWEEN #{startRow} and #{lastRow}
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">
@@ -15,8 +42,11 @@
 	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO QNA (NUM, TITLE, WRITER, CONTENTS, REGDATE, HIT)
-		VALUES (BOARD_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, sysdate, 0)
+		<selectKey keyProperty="num" order="BEFORE" resultType="long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA (NUM, TITLE, WRITER, CONTENTS, REGDATE, HIT, REF, STEP, DEPTH)
+		VALUES (#{num}, #{title}, #{writer}, #{contents}, sysdate, 0, #{num},0,0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardDTO">

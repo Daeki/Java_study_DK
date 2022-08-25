@@ -8,7 +8,7 @@ import com.iu.home.util.Pager;
 public interface BoardDAO {
 	
 	//글의 총갯수
-	public Long getCount()throws Exception;
+	public Long getCount(Pager pager)throws Exception;
 	
 	//글목록
 	public List<BoardDTO> getList(Pager pager)throws Exception;

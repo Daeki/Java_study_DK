@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.home.board.impl.BoardDTO;
+import com.iu.home.util.Pager;
 
 @Controller
 @RequestMapping("/qna/*")
@@ -18,14 +21,26 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "Qna";
+		
+	}
+	
+	@GetMapping("reply")
+	public ModelAndView setReply()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/reply");
+		return mv;
+	} 
+	
 	//글목록
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public ModelAndView getList()throws Exception{
+	public ModelAndView getList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = qnaService.getList();
+		List<BoardDTO> ar = qnaService.getList(pager);
 		
 		mv.addObject("list", ar);
-		mv.addObject("board", "Qna");
 		mv.setViewName("board/list");
 		return mv; 
 	}
