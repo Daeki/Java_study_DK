@@ -56,7 +56,13 @@
 	    <c:forEach items="${list}" var="dto" >
 			<tr>
 				<td>${dto.num}</td>
-				<td><a href="./detail.iu?num=${dto.num}">${dto.title}</a></td>
+				<td>
+				<%-- for(int i=begin; i<= end;i++ --%>
+				<c:catch>
+				<c:forEach begin="1" end="${dto.depth}">&ensp;</c:forEach>
+				</c:catch>
+				<a href="./detail.iu?num=${dto.num}">${dto.title}</a>
+				</td>
 				<td>${dto.writer}</td>
 				<td>${dto.regDate}</td>
 				<td>${dto.hit}</td>	

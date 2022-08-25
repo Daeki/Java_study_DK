@@ -36,7 +36,7 @@
 		</div>
 		
 		<div class="row">
-			<a href="./reply.iu" class="btn btn-danger">Reply</a>
+			<a href="./reply.iu?num=${boardDTO.num}" class="btn btn-danger">Reply</a>
 		</div>
 		
 		

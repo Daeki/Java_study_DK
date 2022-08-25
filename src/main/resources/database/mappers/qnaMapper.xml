@@ -4,6 +4,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.iu.home.board.qna.QnaDAO">
+	<insert id="setReplyAdd" parameterType="QnaDTO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA (NUM, TITLE, WRITER, CONTENTS, REGDATE, HIT, REF, STEP, DEPTH)
+		VALUES (#{num}, #{title}, #{writer}, #{contents}, sysdate, 0, #{ref}, #{step},#{depth})
+	</insert>
+
+	<update id="setStepUpdate" parameterType="QnaDTO">
+		UPDATE QNA SET STEP=STEP+1 WHERE REF= #{ref} and STEP > #{step}
+	</update>
+
+
 	<select id="getCount" resultType="Long" parameterType="Pager">
 		SELECT COUNT(num) FROM QNA
 	            	WHERE
@@ -32,7 +45,7 @@
 		            
 		            
 		            
-		             ORDER BY NUM DESC) N
+		             ORDER BY REF DESC, STEP ASC) N
 		    )
 		WHERE R BETWEEN #{startRow} and #{lastRow}
 	</select>

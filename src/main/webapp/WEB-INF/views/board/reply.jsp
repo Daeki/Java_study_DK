@@ -18,6 +18,7 @@
 	
 	<div class="row">
 		<form action="./reply.iu" method="post">
+			<input type="hidden" name="num" value="${boardDTO.num}">
 			<div class="mb-3">
 			  <label for="title" class="form-label">Title</label>
 			  <input type="text" name="title" class="form-control" id="title" placeholder="제목 입력">
