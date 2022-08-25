@@ -15,8 +15,6 @@
 		            (SELECT * FROM NOTICE ORDER BY NUM DESC) N
 		    )
 		WHERE R BETWEEN #{startRow} and #{lastRow}
-
-
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
