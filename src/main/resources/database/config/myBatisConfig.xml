@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.iu.home.bankMembers.BankMembersDTO" alias="BankMembersDTO"/>
+		<typeAlias type="com.iu.home.bankMembers.BankMembersFileDTO" alias="BankMembersFileDTO"/>
 		<typeAlias type="com.iu.home.bankAccount.BankAccountDTO" alias="BankAccountDTO"/>
 		<typeAlias type="com.iu.home.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.iu.home.board.impl.BoardDTO" alias="BoardDTO"/>

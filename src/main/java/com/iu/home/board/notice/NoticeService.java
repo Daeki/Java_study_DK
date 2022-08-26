@@ -1,11 +1,15 @@
 package com.iu.home.board.notice;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.home.board.impl.BoardDTO;
 import com.iu.home.board.impl.BoardService;
@@ -15,6 +19,8 @@ public class NoticeService implements BoardService{
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
+	@Autowired
+	private ServletContext servletContext;
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -120,9 +126,28 @@ public class NoticeService implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.setAdd(boardDTO);
+	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+		//1. 실제경로
+		String realPath = servletContext.getRealPath("resources/upload/notice");
+		System.out.println(realPath);
+		
+		//2. 폴더 확인
+		File file = new File(realPath);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		for(MultipartFile mf:files) {
+			if(mf.isEmpty()) {
+				continue;
+			}
+			
+			//저장하는 코드
+		}
+		
+		
+		
+		return 0;//noticeDAO.setAdd(boardDTO);
 	}
 
 	@Override

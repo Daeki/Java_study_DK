@@ -20,7 +20,7 @@
     
     	<div class="row justify-content-center mt-5">
     		<div class="col-lg-6">
-        	<form action="./join.iu" method="post">
+        	<form action="./join.iu" method="post" enctype="multipart/form-data">
 			  <div class="row mb-3">
 			    <label for="inputUserName" class="col-sm-2 col-form-label">ID</label>
 			    <div class="col-sm-10">
@@ -52,6 +52,15 @@
 			      <input type="text" name="phone" class="form-control" id="inputPhone" placeholder="전화번호 입력">
 			    </div>
 			  </div>
+			  
+			  <div class="row mb-3">
+			    <label for="files" class="col-sm-2 col-form-label">Photo</label>
+			    <div class="col-sm-10">
+			      <input type="file" name="photo" class="form-control" id="files" placeholder="전화번호 입력">
+			    </div>
+			  </div>
+			  
+			  
 			  <div class="row justify-content-end">
 			  	<div >
 			  		<button type="submit" class="btn btn-primary mb-3">Sign in</button>

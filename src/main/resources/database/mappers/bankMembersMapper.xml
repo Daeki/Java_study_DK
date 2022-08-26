@@ -7,19 +7,26 @@
 <!-- namespace의 값은 사용할 DAO의 풀패키지명 -->
 <!-- application 내에서 중복 X -->
 <mapper namespace="com.iu.start.bankMembers.BankMembersDAO">
+	<insert id="setAddFile" parameterType="BankMembersFileDTO">
+		INSERT INTO MEMBERFILE (FILENUM, USERNAME, FILENAME, ORINAME)
+		VALUES (FILE_SEQ.NEXTVAL, #{userName}, #{fileName}, #{oriName})
+	</insert>
 
 	<select id="getMyPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
-		SELECT 	USERNAME, NAME, EMAIL, PHONE, ACCOUNTNUM, BOOKNAME, ACCOUNTDATE
+        SELECT 	BM.USERNAME, NAME, EMAIL, PHONE,FILENUM, FILENAME, ACCOUNTNUM, BOOKNAME, ACCOUNTDATE
 		FROM 	BANKMEMBERS BM
-		     	
-		     	INNER JOIN 
+				LEFT JOIN
+				MEMBERFILE MF
+				ON BM.USERNAME=MF.USERNAME
+				     	
+		     	LEFT JOIN 
 		     	BANKACCOUNT BA
-		     	USING (USERNAME)
+		     	ON BM.USERNAME=BA.USERNAME
 		     	
-		     	INNER JOIN
+		     	LEFT JOIN
 		     	BANKBOOK BB
-		     	USING (BOOKNUM)
-		WHERE 	USERNAME=#{userName} 
+		     	ON BA.BOOKNUM=BB.BOOKNUM
+		WHERE 	BM.USERNAME=#{userName}
 		
 		
 	</select>
@@ -29,6 +36,10 @@
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
+		<association property="bankMembersFileDTO" javaType="BankMembersFileDTO">
+			<id column="FILENUM" property="fileNum" />
+			<result column="FILENAME" property="fileName"/>
+		</association>
 		<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO">
 			<id column="ACCOUNTNUM" property="accountNum"/>
 			<result column="ACCOUNTDATE" property="accountDate"/>

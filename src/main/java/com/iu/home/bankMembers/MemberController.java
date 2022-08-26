@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.home.bankAccount.BankAccountDTO;
@@ -84,21 +85,16 @@ public class MemberController {
 	
 	//Post
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO) throws Exception {
-//		System.out.println(request.getParameter("name"));
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
 		System.out.println("조인 Post 실행");
-//		BankMembersDTO bankMembersDTO = new BankMembersDTO();
-//		//String username = request.getParameter("username");
-//		bankMembersDTO.setUsername(username);
-//		bankMembersDTO.setPassword(password);
-//		bankMembersDTO.setName(name);
-//		bankMembersDTO.setEmail(email);
-//		bankMembersDTO.setPhone(phone);
-		int result = bankMembersService.setJoin(bankMembersDTO);
+		System.out.println(photo);
+		
+		System.out.println("upload 파일명 : "+photo.getOriginalFilename());
+		System.out.println("upload 파라미터명 : "+photo.getName());
+		System.out.println("upload 파일 크기 : "+photo.getSize());
+		int result = bankMembersService.setJoin(bankMembersDTO, photo);
 
 		
-		//로그인폼 페이지로 이동
-		//redirect
 		return "redirect:./login.iu";
 	}
 	
