@@ -62,7 +62,7 @@ public class NoticeController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile [] files)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = noticeService.setAdd(boardDTO);
+		int result = noticeService.setAdd(boardDTO, files);
 		mv.setViewName("redirect:./list.iu");
 		return mv;
 		

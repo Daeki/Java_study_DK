@@ -7,6 +7,9 @@ import com.iu.home.util.Pager;
 
 public interface BoardDAO {
 	
+	//file
+	public int setAddFile(BoardFileDTO boardFileDTO)throws Exception;
+	
 	//글의 총갯수
 	public Long getCount(Pager pager)throws Exception;
 	

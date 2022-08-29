@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.home.board.impl.BoardDTO;
+import com.iu.home.board.impl.BoardFileDTO;
 import com.iu.home.board.impl.BoardService;
 import com.iu.home.util.Pager;
 @Service
@@ -127,6 +129,7 @@ public class NoticeService implements BoardService{
 
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+		int result = noticeDAO.setAdd(boardDTO);
 		//1. 실제경로
 		String realPath = servletContext.getRealPath("resources/upload/notice");
 		System.out.println(realPath);
@@ -142,12 +145,25 @@ public class NoticeService implements BoardService{
 				continue;
 			}
 			
+			//file = new File(realPath);
+			
 			//저장하는 코드
+			String fileName = UUID.randomUUID().toString();
+			fileName = fileName+"_"+mf.getOriginalFilename();
+			
+			File dest = new File(file, fileName);//폴더, 파일명
+			mf.transferTo(dest);
+			
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(mf.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
+			noticeDAO.setAddFile(boardFileDTO);
 		}
 		
 		
 		
-		return 0;//noticeDAO.setAdd(boardDTO);
+		return result;//
 	}
 
 	@Override

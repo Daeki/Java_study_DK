@@ -14,6 +14,11 @@
 		LIKE '%'||#{search}||'%'	
 	
 	</sql>
+	
+	<insert id="setAddFile" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEFILE
+		VALUES(FILE_SEQ.NEXTVAL, #{num}, #{filename}, #{oriName})
+	</insert>
 
 	<select id="getCount" resultType="Long" parameterType="Pager">
 		SELECT COUNT(num) FROM NOTICE
@@ -41,8 +46,11 @@
 	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
+		<selectKey order="BEFORE" keyProperty="num" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
 		INSERT INTO NOTICE (NUM, TITLE, WRITER, CONTENTS, REGDATE, HIT)
-		VALUES (BOARD_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, sysdate, 0)
+		VALUES (#{num}, #{title}, #{writer}, #{contents}, sysdate, 0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardDTO">
