@@ -17,7 +17,7 @@
 	
 	<insert id="setAddFile" parameterType="BoardFileDTO">
 		INSERT INTO NOTICEFILE
-		VALUES(FILE_SEQ.NEXTVAL, #{num}, #{filename}, #{oriName})
+		VALUES(FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
 	</insert>
 
 	<select id="getCount" resultType="Long" parameterType="Pager">
@@ -41,9 +41,29 @@
 		WHERE R BETWEEN #{startRow} and #{lastRow}
 	</select>
 	
-	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
-		SELECT * FROM NOTICE WHERE NUM=#{num}
+	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
+		SELECT N.*, NF.*
+		FROM NOTICE N
+			 LEFT JOIN
+			 NOTICEFILE NF
+			 ON N.NUM=NF.NUM	
+		WHERE N.NUM=#{num}
 	</select>
+	
+	<resultMap type="NoticeDTO" id="getDetailResult">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
+		<result column="writer" property="writer"/>
+		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="hit" property="hit"/>
+		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</collection>
+	</resultMap>
+	
 	
 	<insert id="setAdd" parameterType="BoardDTO">
 		<selectKey order="BEFORE" keyProperty="num" resultType="Long">
