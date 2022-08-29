@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.home.bankAccount.BankAccountDAO;
 import com.iu.home.bankAccount.BankAccountDTO;
+import com.iu.home.util.FileManger;
 
 
 @Service
@@ -26,6 +27,8 @@ public class BankMembersService {
 	
 	@Autowired
 	private BankMembersDAO bankMembersDAO;
+	@Autowired
+	private FileManger fileManger;
 //	@Autowired
 //	private ServletContext servletContext;
 //	@Autowired
@@ -95,15 +98,17 @@ public class BankMembersService {
 			//  2) FileCopyUtils 클래스의 copy 메서드 사용
 			
 			//2. 저장된 파일정보를 DB에 저장
-			BankMembersFileDTO membersFileDTO = new BankMembersFileDTO();
-			membersFileDTO.setFileName(fileName);
-			membersFileDTO.setOriName(photo.getOriginalFilename());
-			membersFileDTO.setUserName(bankMembersDTO.getUserName());
-			bankMembersDAO.setAddFile(membersFileDTO);
+		String path="resources/upload/member";
+		String fileName = fileManger.saveFile(servletContext,path, photo);
+		
+			if(!photo.isEmpty()) {
+				BankMembersFileDTO membersFileDTO = new BankMembersFileDTO();
+				membersFileDTO.setFileName(fileName);
+				membersFileDTO.setOriName(photo.getOriginalFilename());
+				membersFileDTO.setUserName(bankMembersDTO.getUserName());
+				bankMembersDAO.setAddFile(membersFileDTO);
 			
-			
-			
-		}//isEmpty 끝
+			}//isEmpty 끝
 		
 		return result;
 	}

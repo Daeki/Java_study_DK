@@ -86,14 +86,14 @@ public class MemberController {
 	
 	//Post
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, ServletContext servletContext) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, HttpSession session) throws Exception {
 		System.out.println("조인 Post 실행");
 		System.out.println(photo);
 		
 		System.out.println("upload 파일명 : "+photo.getOriginalFilename());
 		System.out.println("upload 파라미터명 : "+photo.getName());
 		System.out.println("upload 파일 크기 : "+photo.getSize());
-		int result = bankMembersService.setJoin(bankMembersDTO, photo, servletContext);
+		int result = bankMembersService.setJoin(bankMembersDTO, photo, session.getServletContext());
 
 		
 		return "redirect:./login.iu";
