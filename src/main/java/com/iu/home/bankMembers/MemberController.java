@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -85,14 +86,14 @@ public class MemberController {
 	
 	//Post
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, ServletContext servletContext) throws Exception {
 		System.out.println("조인 Post 실행");
 		System.out.println(photo);
 		
 		System.out.println("upload 파일명 : "+photo.getOriginalFilename());
 		System.out.println("upload 파라미터명 : "+photo.getName());
 		System.out.println("upload 파일 크기 : "+photo.getSize());
-		int result = bankMembersService.setJoin(bankMembersDTO, photo);
+		int result = bankMembersService.setJoin(bankMembersDTO, photo, servletContext);
 
 		
 		return "redirect:./login.iu";
