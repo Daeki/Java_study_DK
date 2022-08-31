@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +31,11 @@ public class MemberController {
 	private BankMembersService bankMembersService;
 //	@Autowired
 //	private BankAccountService bankAccountService;
+	
+	@GetMapping("agree.iu")
+	public String getAgree()throws Exception{
+		return "member/agree";
+	}
 	
 	@RequestMapping(value = "myPage.iu", method = RequestMethod.GET)
 	public ModelAndView myPage(HttpSession session)throws Exception{

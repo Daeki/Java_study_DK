@@ -22,7 +22,7 @@
                     	</c:when>
                     	<c:otherwise>
 	                    	<a class="nav-link active" href="/member/login.iu">로그인</a>
-	                    	<a class="nav-link active" href="/member/join.iu">회원가입</a>
+	                    	<a class="nav-link active" href="/member/agree.iu">회원가입</a>
                    		</c:otherwise>
                     </c:choose>
                 </div>
