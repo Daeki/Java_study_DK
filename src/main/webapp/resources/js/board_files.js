@@ -4,6 +4,7 @@ const fileAdd = document.getElementById("fileAdd");//add button
 const addFiles = document.getElementById("addFiles"); // div#addFiles
 
 let count=0;
+let idx=0;
 
 fileAdd.addEventListener("click", function(){
     
@@ -17,13 +18,17 @@ fileAdd.addEventListener("click", function(){
 //     <div class="mb-3">
 //        <label for="files" class="form-label">File</label>
 //        <input type="file" name="files" class="form-control" id="files">
+//        <button type="button" class="del">삭제</button>        
 //     </div>
     
     //부모 Element div 생성
     let div = document.createElement("div");   //<div></div>
     let c = document.createAttribute("class"); // class=""
     c.value="mb-3";                            // class="mb-3"
-    div.setAttributeNode(c);                   // <div class="mb-3"></div>   
+    div.setAttributeNode(c);                   // <div class="mb-3"></div>  
+    c = document.createAttribute("id");
+    c.value="file"+idx;
+    div.setAttributeNode(c);  
 
     //자식 Element Label 생성
     let label = document.createElement("label");    //<label></label>
@@ -57,9 +62,36 @@ fileAdd.addEventListener("click", function(){
     input.setAttributeNode(inputAttr);                  //<input type="file" name="files" class="form-control" id="files">
     div.appendChild(input);
 
+    //삭제 Button Element 생성
+    let button = document.createElement("button");
+    let buttonContents = document.createTextNode("삭제");
+    button.appendChild(buttonContents);
+    let buttonAttr = document.createAttribute("type")
+    buttonAttr.value="button";
+    button.setAttributeNode(buttonAttr);
+
+    buttonAttr = document.createAttribute("class");
+    buttonAttr.value="del btn btn-danger";
+    button.setAttributeNode(buttonAttr);
+
+    buttonAttr = document.createAttribute("title");
+    buttonAttr.value=idx;
+    button.setAttributeNode(buttonAttr);
+
+    div.appendChild(button);
+
+
     addFiles.append(div);
 
-
     count++;
+    idx++;
 
 })
+
+addFiles.addEventListener("click", function(event){
+    if(event.target.classList[0]=='del'){
+        alert('DELETE');
+        console.log(event);
+    }
+
+});
