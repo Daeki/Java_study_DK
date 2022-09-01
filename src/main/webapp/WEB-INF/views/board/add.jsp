@@ -36,19 +36,12 @@
 			  <label for="contents" class="form-label">Contents</label>
 			  <textarea class="form-control" name="contents" id="contents" rows="3"></textarea>
 			</div>
-			<div class="mb-3">
-			  <label for="files" class="form-label">File</label>
-			  <input type="file" name="files" class="form-control" id="files">
+
+			<div id="addFiles">
+				<button type="button" class="btn btn-danger" id="fileAdd">파일 추가</button>
+
 			</div>
-			<div class="mb-3">
-			  <label for="files" class="form-label">File</label>
-			  <input type="file" name="files" class="form-control" id="files">
-			</div>
-			<div class="mb-3">
-			  <label for="files" class="form-label">File</label>
-			  <input type="file" name="files" class="form-control" id="files">
-			</div>
-			
+
 			
 			<div class="mb-3">
 				<button class="btn btn-success">WRITE</button>
@@ -60,6 +53,7 @@
 <c:import url="../template/footer.jsp"></c:import>
 <!-- bootStrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="/resources/js/board_files.js"></script>
 <script type="text/javascript">
 	$("#contents1").summernote();
 </script>
