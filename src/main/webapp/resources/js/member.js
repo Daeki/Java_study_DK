@@ -112,12 +112,22 @@ function loginCheck(){
         //frm.submit();
     });
 }
+
+//약관 동의 부분
 function check(){
-    const all = document.getElementById("all");
-    const cb = document.getElementsByClassName("cb");
+    // const all = document.getElementById("all");
+    const all = document.querySelector("#all");
+    // const cb = document.getElementsByClassName("cb");
+    const cb = document.querySelectorAll(".cb");
     const join = document.getElementById("join");
     const frm = document.getElementById("frm");
     const req = document.getElementsByClassName("req");
+
+    console.log("foreach");
+    cb.forEach(function(v, i, ar){
+        console.log(v);
+    });
+    
 
     join.addEventListener("click", function(){
         let result=true;
