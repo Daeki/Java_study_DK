@@ -71,15 +71,30 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "login.iu", method = RequestMethod.POST)
-	public String login(HttpSession session, BankMembersDTO bankMembersDTO, Model model) throws Exception {
+	public ModelAndView login(HttpSession session, BankMembersDTO bankMembersDTO, Model model) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
 		System.out.println("DB에 로그인 실행");
 		bankMembersDTO = bankMembersService.getLogin(bankMembersDTO);
 		System.out.println(bankMembersDTO);
 		//HttpSession session = request.getSession();
 		session.setAttribute("member", bankMembersDTO);
 		
+		int result=0;
+		String message="로그인 실패";
+		String url = "./login.iu";
+		if(bankMembersDTO!=null) {
+			result=1;
+			message="로그인 성공";
+			url = "../";
+		}
+		
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
 		// "redirect:다시접속할URL주소(절대경로,상대경로)"
-		return "redirect:../";
+		return mv;
 	}
 	
 	// join  /member/join Get
