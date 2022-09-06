@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.iu.home.bankBook.BankBookCommentDAO">
+	<insert id="setCommentAdd" parameterType="BankBookCommentDTO">
+		INSERT INTO BB_COMMENT (NUM, BOOKNUM, WRITER, CONTENTS, REGDATE)
+		VALUES (BOARD_SEQ.NEXTVAL, #{bookNum}, #{writer}, #{contents}, sysdate)
+	</insert>
+
+</mapper>    
