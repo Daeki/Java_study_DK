@@ -15,6 +15,7 @@
 		<typeAlias type="com.iu.home.board.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.iu.home.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.iu.home.util.Pager" alias="Pager"/>
+		<typeAlias type="com.iu.home.util.CommentPager" alias="CommentPager"/>
 		
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
