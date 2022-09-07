@@ -65,9 +65,12 @@
 	</div>
 
 	<!-- Comment List 출력-->
-	<div id="commentList">
-		
+	<div>
+		<table id="commentList" class="table table-hover">
+
+		</table>
 	</div>
+	<button id="more" class="btn btn-danger disabled">더보기</button>
 	<!------ Comment ---------->
 </section>
 <c:import url="../template/footer.jsp"></c:import>

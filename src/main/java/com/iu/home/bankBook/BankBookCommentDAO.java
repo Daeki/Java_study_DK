@@ -15,6 +15,10 @@ public class BankBookCommentDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.home.bankBook.BankBookCommentDAO.";
 	
+	public Long getCommentListTotalCount(CommentPager commentPager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentListTotalCount", commentPager);
+	}
+	
 	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getCommentList", commentPager);
 	}

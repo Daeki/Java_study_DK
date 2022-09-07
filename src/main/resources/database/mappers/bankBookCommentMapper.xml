@@ -4,6 +4,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.iu.home.bankBook.BankBookCommentDAO">
+	<select id="getCommentListTotalCount" parameterType="CommentPager" resultType="Long">
+		SELECT COUNT(NUM) FROM BB_COMMENT WHERE BOOKNUM=#{bookNum}
+	</select>
+
 	<select id="getCommentList" parameterType="CommentPager" resultType="BankBookCommentDTO">
 		SELECT * FROM 
 		    (SELECT ROWNUM R, C.* FROM
