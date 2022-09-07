@@ -113,6 +113,30 @@ function getCommentList(p, bn){
                 td.appendChild(tdText);
                 tr.appendChild(td);
 
+                td = document.createElement("td");
+                tdText = document.createTextNode("수정");
+                let tdAttr = document.createAttribute("class")
+                tdAttr.value="update";
+                td.setAttributeNode(tdAttr);
+                td.appendChild(tdText);
+                tr.appendChild(td);
+
+                td = document.createElement("td");
+                tdText = document.createTextNode("삭제");
+                tdAttr = document.createAttribute("class")
+                tdAttr.value="delete";
+                td.setAttributeNode(tdAttr);
+                td.appendChild(tdText);
+
+                tdAttr = document.createAttribute("data-comment-num");
+                tdAttr.value=ar[i].num;
+                td.setAttributeNode(tdAttr);
+
+
+                tr.appendChild(td);
+
+
+
                 commentList.append(tr);
 
                 if(page >= pager.totalPage){
@@ -161,3 +185,15 @@ more.addEventListener("click", function(){
 
 
 });
+
+//---------------------- Delete ----------------------------
+commentList.addEventListener("click", function(event){
+    if(event.target.className=="delete"){
+        let check = window.confirm("삭제할거야???");
+        if(check){
+            let num= event.target.getAttribute("data-comment-num");
+            console.log("Num : ", num);
+        }
+    }
+
+})
