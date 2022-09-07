@@ -21,6 +21,9 @@ public class BankBookService {
 	private BankBookCommentDAO bankBookCommentDAO;
 	
 	
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+		return bankBookCommentDAO.setCommentDelete(bankBookCommentDTO);
+	}
 	
 	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager)throws Exception{
 		commentPager.getRowNum();

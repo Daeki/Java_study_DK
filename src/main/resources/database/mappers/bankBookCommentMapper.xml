@@ -4,6 +4,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.iu.home.bankBook.BankBookCommentDAO">
+	<delete id="setCommentDelete" parameterType="BankBookCommentDTO">
+		DELETE BB_COMMENT WHERE num=#{num} 
+	</delete>
+	
 	<select id="getCommentListTotalCount" parameterType="CommentPager" resultType="Long">
 		SELECT COUNT(NUM) FROM BB_COMMENT WHERE BOOKNUM=#{bookNum}
 	</select>

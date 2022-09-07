@@ -186,13 +186,56 @@ more.addEventListener("click", function(){
 
 });
 
-//---------------------- Delete ----------------------------
+//---------------------- Delete, Update ----------------------------
 commentList.addEventListener("click", function(event){
+
+    //---------- Update
+    if(event.target.className="update"){
+        // let contents = event.target.previousSibling.previousSibling.previousSibling;
+        // console.log(contents);
+        // let v = contents.innerHTML;
+        // contents.innerHTML="<textarea>"+v+"</textarea>";
+        document.querySelector("#up").click();
+    }
+
+
+    //---------- DELETE
     if(event.target.className=="delete"){
         let check = window.confirm("삭제할거야???");
         if(check){
             let num= event.target.getAttribute("data-comment-num");
             console.log("Num : ", num);
+
+            //1. XMLHTTPResquest
+            const xhttp = new XMLHttpRequest();
+
+            //2. 요청 정보(URL, Method)
+            xhttp.open("POST", "commentDelete");
+
+            //3. Header (enctype);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            //4. 요청 (파라미터와 함께)
+            xhttp.send("num="+num);
+
+            //5. 응답 처리
+            xhttp.onreadystatechange=function(){
+                if(xhttp.readyState==4&&xhttp.status==200){
+                    let result = xhttp.responseText.trim();
+                    if(result==1){
+                        alert("삭제 성공");
+                        page=1;
+                        for(let i=0;i<commentList.children.length;){
+                            commentList.children[0].remove();
+                        }
+
+                        getCommentList(page, bookNum);
+                    }else {
+                        alert("삭제 실패");
+                    }
+                }
+            }
+
         }
     }
 
