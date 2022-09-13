@@ -24,12 +24,23 @@
 	
 	<!-- Interceptor 객체 생성 -->
 	<beans:bean class="com.iu.home.interceptor.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
-	
+	<beans:bean class="com.iu.home.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
 	<!-- URL - Interceptor 맵핑 -->
 	<interceptors>
 		<interceptor>
-			
-			
+			<mapping path="/notice/**"/>
+			<mapping path="/qna/**"/>
+			<exclude-mapping path="/notice/list.iu"/>
+			<exclude-mapping path="/notice/detail.iu"/>
+			<exclude-mapping path="/qna/list.iu"/>
+			<beans:ref bean="memberInterceptor"/>
+		</interceptor>
+	
+		<interceptor>
+			<mapping path="/notice/**"/>
+			<exclude-mapping path="/notice/list.iu"/>
+			<exclude-mapping path="/notice/detail.iu"/>
+			<beans:ref bean="adminCheckInterceptor"/>
 		</interceptor>	
 		
 		

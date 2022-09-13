@@ -73,6 +73,9 @@
 			<c:forEach items="${member.roleDTOs}" var="roleDTO">
 				<div>${roleDTO.roleNum}, ${roleDTO.roleName}</div>
 			</c:forEach>
+			
+			<h1>당신은 ${member.roleDTOs.get(0).roleName}</h1>
+			<h1>당신은 ${member.roleDTOs["0"].roleName}</h1>
 		</div>
 		
 	</section>
