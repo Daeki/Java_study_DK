@@ -21,31 +21,16 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- Interceptor 설정 -->
+	
 	<!-- Interceptor 객체 생성 -->
-	<beans:bean class="com.iu.home.interceptor.TestInterceptor" id="testInterceptor"></beans:bean>
+	<beans:bean class="com.iu.home.interceptor.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
 	
 	<!-- URL - Interceptor 맵핑 -->
 	<interceptors>
 		<interceptor>
-			<mapping path="/qna/update.iu"/>
-			<mapping path="/notice/update.iu"/>
-			<beans:bean class="com.iu.home.interceptor.WriterCheckInterceptor"></beans:bean>
-		</interceptor>
-<!-- 		<interceptor>
-			<mapping path="/qna/*"/>
-			<mapping path="/member/myPage.iu"/>
-			<exclude-mapping path="/qna/list.iu"/>
 			
 			
-			<beans:bean class="com.iu.home.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
-		</interceptor> -->
-		<interceptor>
-			<!-- URL 경로 -->
-			<mapping path="/**"/>
-			<beans:ref bean="testInterceptor"/>
-		</interceptor>
-		
+		</interceptor>	
 		
 		
 	</interceptors>

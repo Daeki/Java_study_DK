@@ -8,9 +8,9 @@
 </head>
 <body>
 <script type="text/javascript">
-	let result = ${result};
+	//let result = ${result};
 	let message = '${message}';
-	alert(result);
+	//alert(result);
 	alert(message);
 	location.href="${url}";
 </script>
