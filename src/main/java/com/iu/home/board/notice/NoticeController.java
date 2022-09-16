@@ -37,8 +37,10 @@ public class NoticeController {
 	
 	@PostMapping("fileDelete")
 	@ResponseBody
-	public int setFileDelete(BoardFileDTO boardFileDTO)throws Exception{
-		int result = noticeService.setFileDelete(boardFileDTO);
+	public int setFileDelete(BoardFileDTO boardFileDTO, HttpSession session)throws Exception{
+		System.out.println("File Delete");
+		System.out.println("Context  : "+session.getServletContext());
+		int result = noticeService.setFileDelete(boardFileDTO, session.getServletContext());
 		return result;
 	}
 	

@@ -10,7 +10,7 @@ import com.iu.home.util.Pager;
 
 public interface BoardService {
 	//fileDelete
-	public int setFileDelete(BoardFileDTO boardFileDTO)throws Exception;
+	public int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext)throws Exception;
 	
 	//글목록
 	public List<BoardDTO> getList(Pager pager)throws Exception;

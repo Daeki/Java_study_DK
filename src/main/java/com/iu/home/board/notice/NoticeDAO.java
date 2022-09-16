@@ -18,6 +18,13 @@ public class NoticeDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.home.board.notice.NoticeDAO.";
 
+	
+	@Override
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", boardFileDTO);
+	}
+	
 	@Override
 	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception {
 		// TODO Auto-generated method stub

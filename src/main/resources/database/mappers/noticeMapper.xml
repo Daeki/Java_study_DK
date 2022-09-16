@@ -15,6 +15,10 @@
 	
 	</sql>
 	
+	<select id="getFileDetail" resultType="BoardFileDTO" parameterType="BoardFileDTO">
+		SELECT * FROM NOTICEFILE WHERE FILENUM=#{fileNum}
+	</select>
+	
 	<delete id="setFileDelete" parameterType="BoardFileDTO">
 		DELETE NOTICEFILE WHERE FILENUM=#{fileNum}
 	</delete>

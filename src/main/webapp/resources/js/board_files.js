@@ -33,6 +33,7 @@ try{
                     if(result==1){
                         console.log(result);
                         f.parentNode.remove();
+                        count--;
 
 
                     }else {
@@ -55,6 +56,12 @@ try{
 
 let count=0;
 let idx=0;
+
+function setCount(c){
+    if(c>=0){
+        count=c;
+    }
+}
 
 try{
 

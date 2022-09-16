@@ -27,9 +27,20 @@ public class NoticeService implements BoardService{
 	private FileManger fileManger;
 	
 	@Override
-	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception {
+	public int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext) throws Exception {
 		// TODO Auto-generated method stub
-		return noticeDAO.setFileDelete(boardFileDTO);
+		boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);
+		System.out.println("FileNum : "+boardFileDTO.getFileNum());
+		int result = noticeDAO.setFileDelete(boardFileDTO);
+		String path="resources/upload/notice";
+		System.out.println("DB DELETE : "+result);
+		if(result>0) {
+			boolean check = fileManger.deleteFile(servletContext, path, boardFileDTO);
+			System.out.println("fileDelete : "+check);
+		}
+		
+		
+		return result;
 	}
 
 	@Override
