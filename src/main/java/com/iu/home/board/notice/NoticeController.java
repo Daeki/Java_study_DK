@@ -115,8 +115,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
-	public String setUpdate(BoardDTO boardDTO)throws Exception{
-		int result = noticeService.setUpdate(boardDTO);
+	public String setUpdate(BoardDTO boardDTO, MultipartFile [] files, HttpSession session)throws Exception{
+		int result = noticeService.setUpdate(boardDTO, files, session.getServletContext());
 		return "redirect:./detail.iu?num="+boardDTO.getNum();
 	}
 	

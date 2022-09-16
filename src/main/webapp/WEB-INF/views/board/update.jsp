@@ -7,7 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Add Book</title>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<!-- summernote jquery  -->
+<script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script> 
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+
+ <!-- include summernote css/js-->
+ <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 <style>
 </style>
 </head>
@@ -17,7 +26,7 @@
 <section class="container-fluid col-lg-4">
 	
 	<div class="row">
-		<form action="./update.iu" method="post">
+		<form action="./update.iu" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="num" value="${boardDTO.num}" >
 			<div class="mb-3">
 			  <label for="title" class="form-label">Title</label>
@@ -60,6 +69,7 @@
 <script src="/resources/js/board_files.js"></script>
 <script>
 	setCount(${boardDTO.boardFileDTOs.size()});
+	$("#contents").summernote();
 </script>
 </body>
 </html>
