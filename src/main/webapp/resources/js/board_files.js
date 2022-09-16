@@ -32,6 +32,9 @@ try{
                     let result = xhttp.responseText.trim();
                     if(result==1){
                         console.log(result);
+                        f.parentNode.remove();
+
+
                     }else {
                         console.log(result);
                     }
@@ -41,7 +44,7 @@ try{
         });
     });
 }catch(e){
-
+    console.log(e);
 }
 
 // for(fi of fileDelete){

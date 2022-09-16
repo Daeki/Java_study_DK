@@ -40,6 +40,11 @@
 		     </div>
 			
 			</c:forEach>
+
+			<div id="addFiles">
+				<button type="button" class="btn btn-danger" id="fileAdd">파일 추가</button>
+
+			</div>
 			
 			
 			
