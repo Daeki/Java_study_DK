@@ -32,6 +32,17 @@
 			  <textarea class="form-control" name="contents" id="contents" rows="3">${boardDTO.contents}</textarea>
 			</div>
 			
+			<c:forEach items="${boardDTO.boardFileDTOs}" var="fileDTO">
+
+			<div class="mb-3">
+		        <span class="form-control">${fileDTO.oriName}</span>
+		        <button type="button" class="fileDelete">삭제</button>        
+		     </div>
+			
+			</c:forEach>
+			
+			
+			
 			<div class="mb-3">
 				<button class="btn btn-success">WRITE</button>
 			</div>
@@ -41,5 +52,6 @@
 </section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="/resources/js/board_files.js"></script>
 </body>
 </html>

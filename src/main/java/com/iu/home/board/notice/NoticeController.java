@@ -46,11 +46,7 @@ public class NoticeController {
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("board/list");
-		
-		if(ar.size() != 0) {
-			throw new Exception();
-		}
-		
+
 		return mv; 
 	}
 	
