@@ -9,8 +9,34 @@ const fileDelete = document.querySelectorAll(".fileDelete");//forEach 가능
 try{
     fileDelete.forEach(function(f){
         f.addEventListener("click", function(){
-            console.log("file Delete");
+
+            let check = window.confirm("삭제를 하면 되돌릴 수 없다");
+
+            if(!check){
+                return;
+            }
+
+            let fileNum=f.getAttribute("data-file-num");
             
+            //ajax
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST", "./fileDelete");
+
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            xhttp.send("fileNum="+fileNum);
+
+            xhttp.onreadystatechange=function(){
+                if(xhttp.readyState==4&&xhttp.status==200){
+                    let result = xhttp.responseText.trim();
+                    if(result==1){
+                        console.log(result);
+                    }else {
+                        console.log(result);
+                    }
+                }
+            }
 
         });
     });

@@ -19,6 +19,12 @@ public class NoticeDAO implements BoardDAO {
 	private final String NAMESPACE="com.iu.home.board.notice.NoticeDAO.";
 
 	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE+"setFileDelete", boardFileDTO);
+	}
+	
+	@Override
 	public int setAddFile(BoardFileDTO boardFileDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"setAddFile", boardFileDTO);

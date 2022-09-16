@@ -25,6 +25,12 @@ public class NoticeService implements BoardService{
 
 	@Autowired
 	private FileManger fileManger;
+	
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeDAO.setFileDelete(boardFileDTO);
+	}
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {

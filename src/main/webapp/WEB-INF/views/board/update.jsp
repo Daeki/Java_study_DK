@@ -36,7 +36,7 @@
 
 			<div class="mb-3">
 		        <span class="form-control">${fileDTO.oriName}</span>
-		        <button type="button" class="fileDelete">삭제</button>        
+		        <button type="button" class="fileDelete" data-file-num="${fileDTO.fileNum}">삭제</button>        
 		     </div>
 			
 			</c:forEach>

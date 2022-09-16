@@ -15,6 +15,10 @@
 	
 	</sql>
 	
+	<delete id="setFileDelete" parameterType="BoardFileDTO">
+		DELETE NOTICEFILE WHERE FILENUM=#{fileNum}
+	</delete>
+	
 	<insert id="setAddFile" parameterType="BoardFileDTO">
 		INSERT INTO NOTICEFILE
 		VALUES(FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
